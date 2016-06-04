@@ -28,6 +28,11 @@ if (isset($_GET["id"])) {
                 "correct" => validate($_GET["correct"]),
                 "type" => $problems[$id]["type"]
             ];
+            if ($_GET["disabled"] === "true") {
+                $problems[$id]["disabled"] = 1;
+            } else {
+                $problems[$id]["disabled"] = 0;
+            }
             $res = save_problems(PROBLEMS, $problems);
             session_destroy();
         }
@@ -56,6 +61,7 @@ if (isset($_GET["id"])) {
     <table>
         <tr><td>問題文</td><td><input type="text" name="question" value="<?php echo $p['question']; ?>" /></td></tr>
         <tr><td>答え</td><td><input type="text" name="correct"  value="<?php echo $p['correct']; ?>"/></td></tr>
+        <tr><td>無効化</td><td><input type="checkbox" name="disabled" value="true" <?php if (isset($p['disabled']) && $p['disabled'] === 1) { echo "checked"; } ?> ></td></tr>
     </table>
     <input class="button" type="submit" value="Save">
 </form>

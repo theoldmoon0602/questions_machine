@@ -9,14 +9,14 @@ require_once("define.php");
 require_once("functions.php");
 
 $problems = load_problems(PROBLEMS);
+$problems = enabled_problems($problems);
 $res = null;
 if (isset($_GET["id"])) {
     $id = intval($_GET["id"]);
     if (!(0 <= $id && $id < count($problems))) {
         $res = false;
     } else {
-        unset($problems[$id]);
-        $problems = array_values($problems);
+        $problems["id"]["disabled"] = 1;
         $res = save_problems(PROBLEMS, $problems);
     }
 }
