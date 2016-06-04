@@ -16,7 +16,7 @@ if (isset($_GET["id"])) {
     if (!(0 <= $id && $id < count($problems))) {
         $res = false;
     } else {
-        $problems["id"]["disabled"] = 1;
+        $problems[$id]["disabled"] = 1;
         $res = save_problems(PROBLEMS, $problems);
     }
 }
