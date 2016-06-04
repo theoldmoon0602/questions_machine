@@ -22,3 +22,16 @@ function save_problems($f, $xs)
     $json = json_encode($xs, true);
     return file_put_contents($f, $json);
 }
+
+function enabled_problems($xs)
+{
+    $xs = array_filter($xs, function($v) {
+        return !(isset($v["disabled"]) && $v["disabled"] === 1);
+    });
+    return array_values($xs);
+}
+
+function is_problem_disabled($p) 
+{
+    return (isset($p["disabled"]) && $p["disabled"] === 1);
+}

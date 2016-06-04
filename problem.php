@@ -18,6 +18,7 @@ $seed = intval($_GET["s"]);
 $num = intval($_GET["n"]);
 
 $xs = load_problems(PROBLEMS);
+$xs = enabled_problems($xs);
 $xs = shuffle_problems($xs, $seed);
 $p = $xs[$num];
 

@@ -27,7 +27,7 @@ $problems = load_problems(PROBLEMS);
     </div>
     <ul>
         <?php for($i = 0; $i < count($problems); $i++): ?>
-            <li><a class="button" href="edit.php?id=<?php echo $i; ?>"><?php echo $problems[$i]["question"]; ?></a></li>
+            <li><a class="button"  <?php if (is_problem_disabled($problems[$i])) { echo 'style="background-color: gray;"'; } ?> href="edit.php?id=<?php echo $i; ?>"><?php echo $problems[$i]["question"]; ?></a></li>
         <?php endfor; ?>
     </ul>
 <p><a href="index.php">Go Back to Index Page</a></p>
