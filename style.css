@@ -1,0 +1,25 @@
+.button {
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  color: initial;
+  border: 1px rgba(128, 128, 128, 0.5) solid;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 0.5em 1em;
+  position: relative;
+  margin: 2px 0;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.button:hover {
+  cursor: pointer;
+}
+
+.button:active {
+  top: 2px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
