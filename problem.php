@@ -107,7 +107,7 @@ JS;
     
     <p>
         <button class="button" id="view-correct">View Answer</button>
-        <a class="button" href="problem.php?s=<?php echo $seed; ?>&n=<? echo $num + 1; ?>">Skip This Problem</a>
+        <a class="button" href="problem.php?s=<?php echo $seed; ?>&n=<?php echo $num + 1; ?>">Skip This Problem</a>
     </p>
 
     <p>
