@@ -25,7 +25,7 @@ if (isset($_GET["id"])) {
             $id = intval($id);
             $problems[$id] = [
                 "question" => validate($_GET["question"]),
-                "correct" => validate($_GET["correct"]),
+                "correct" => ($_GET["correct"]),
                 "type" => $problems[$id]["type"]
             ];
             if ($_GET["disabled"] === "true") {

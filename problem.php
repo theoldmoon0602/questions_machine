@@ -40,8 +40,9 @@ function draw_answer_form($p)
 {
     switch ($p["type"]) {
         case "qa":
+        case "re":
             echo <<<HTML
-<div id="answer" class="text-form" contenteditable="true" onkeydown="if (event.keyCode === 13) { submit_func(); event.preventDefault(); }"></div>
+<div id="answer" class="text-form" contenteditable="true" onkeydown="hide_wrong_str(); if (event.keyCode === 13) { submit_func(); event.preventDefault(); }"></div>
 HTML;
             break;
     }
@@ -51,7 +52,8 @@ function draw_correct_answer($p)
 {
     switch ($p["type"]) {
         case "qa":
-            echo $p["correct"];
+        case "re":
+            echo validate(re_escape($p["correct"]));
             break;
     }
 }
@@ -60,6 +62,7 @@ function write_focus_script($p)
 {
     switch ($p["type"]) {
         case "qa":
+	case "re":
             echo <<<JS
 document.getElementById("answer").focus();
 JS;
@@ -83,6 +86,9 @@ JS;
         #correct {
             visibility: hidden;
         }
+	#wrong-alert {
+            visibility: hidden;
+	}
     </style>
 </head>
 <body>
@@ -96,6 +102,7 @@ JS;
 
     <p><?php echo ($num + 1) . "/" . count($xs); ?></p>
     <p id="question"><?php echo $p["question"]; ?></p>
+	<div id="wrong-alert">Wrong!</div>
     <form id="submit" action="">
         <input type="hidden" name="s" value="<?php echo $seed; ?>"/>
         <input type="hidden" name="n" value="<?php echo $num + 1; ?>"/>
@@ -105,6 +112,7 @@ JS;
     <div id="correct">
         <?php draw_correct_answer($p); ?>
     </div>
+
     
     <p>
         <button class="button" id="view-correct">View Answer</button>
@@ -115,10 +123,14 @@ JS;
         <a class="button" href="index.php">Back to Top</a>
     </p>
     <script>
-        var correct = "<?php echo $p['correct']; ?>";
+	<?php if ($p['type'] === 'qa'): ?>
+		var correct = "<?php echo validate($p['correct']); ?>";
+	<?php elseif ($p['type'] === 're'): ?>
+		var correct = new RegExp("^<?php echo re_escape($p['correct']); ?>$");
+	<?php endif; ?>
 
         function get_answer() {
-            <?php if ($p["type"] === "qa"): ?>
+            <?php if ($p["type"] === "qa" || $p["type"] === "re"): ?>
             return document.getElementById("answer").textContent.trim();
             <?php endif; ?>
         }
@@ -129,6 +141,9 @@ JS;
             if (correct === answer) {
                 return true;
             }
+            <?php elseif ($p["type"] === "re"): ?>
+		var answer = get_answer();
+	    	return correct.test(answer);
             <?php endif; ?>
 
             return false;
@@ -153,7 +168,13 @@ JS;
             var red = ans.substr(0, i) + "<span style='color: red;'>" + ans[i] + "</span>" + ans.substr(i + 1);
             document.getElementById("answer").innerHTML = red;
             <?php endif; ?>
+            document.getElementById("wrong-alert").style.visibility = 'visible';
         }
+
+	function hide_wrong_str() {
+            document.getElementById("wrong-alert").style.visibility = 'hidden';
+
+	}
 
         function submit_func() {
             if (!answer_check()) {

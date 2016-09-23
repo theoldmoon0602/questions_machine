@@ -14,7 +14,7 @@ if (isset($_GET["question"])) {
     $problems = load_problems(PROBLEMS);
     $problems []= [
         "question" => validate($_GET["question"]),
-        "correct" => validate($_GET["correct"]),
+        "correct" => ($_GET["correct"]),
         "type" => validate($_GET["type"])
     ];
    $result = save_problems(PROBLEMS, $problems);
@@ -47,6 +47,7 @@ if (isset($_GET["question"])) {
             <tr><td>種類</td><td>
                     <select name="type" id="">
                         <option value="qa" selected>Q&A</option>
+                        <option value="re" selected>Q&A(regular expression)</option>
                     </select>
                 </td></tr>
         </table>

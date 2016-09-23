@@ -1,1 +1,1 @@
-[{"question":"Sample Problem Answer Is FLAG","correct":"FLAG","type":"qa"},{"question":"Second Problem Please ESP Correct Answer","correct":"hoge","type":"qa","disabled":1}]
+[{"question":"Sample Problem Answer Is FLAG","correct":"FLAG","type":"qa"},{"question":"Second Problem Please ESP Correct Answer","correct":"hoge","type":"qa","disabled":1},{"question":"&lt;span color=&quot;red&quot;&gt;Mondai&lt;\/span&gt;","correct":"Red( color)?","type":"re","disabled":0}]

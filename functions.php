@@ -14,7 +14,7 @@ function load_problems($f)
 
 function validate($s)
 {
-    return htmlspecialchars($s, ENT_QUOTES, "UTF-8");
+    return htmlspecialchars($s, ENT_QUOTES, "UTF-8", false);
 }
 
 function save_problems($f, $xs)
@@ -34,4 +34,14 @@ function enabled_problems($xs)
 function is_problem_disabled($p) 
 {
     return (isset($p["disabled"]) && $p["disabled"] === 1);
+}
+
+function re_escape($s) {
+	$s = str_replace('.', '\\\\.', $s); 
+	$s = str_replace('!', '\\\\!', $s); 
+	$s = str_replace('"', '\\\\"', $s); 
+	$s = str_replace("'", "\\\\'", $s); 
+	$s = str_replace('?', '\\\\?', $s); 
+	$s = str_replace(')\\\\?', ')?', $s); 
+	return $s;
 }
