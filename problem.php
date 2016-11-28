@@ -165,8 +165,10 @@ JS;
             <?php if ($p["type"] === "qa"): ?>
             var i = text_different_point(correct, get_answer());
             var ans = get_answer();
-            var red = ans.substr(0, i) + "<span style='color: red;'>" + ans[i] + "</span>" + ans.substr(i + 1);
-            document.getElementById("answer").innerHTML = red;
+	    if (ans.length > i) {
+            	var red = ans.substr(0, i) + "<span style='background-color: red;'>" + ans[i] + "</span>" + ans.substr(i + 1);
+            	document.getElementById("answer").innerHTML = red;
+	    }    
             <?php endif; ?>
             document.getElementById("wrong-alert").style.visibility = 'visible';
         }
