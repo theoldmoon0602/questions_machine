@@ -42,12 +42,12 @@ if (isset($_GET["question"])) {
     <h1>Create New Problem</h1>
     <form action="">
         <table>
-            <tr><td>問題文</td><td><input type="text" name="question" /></td></tr>
+            <tr><td>問題文</td><td><textarea name="question"></textarea></td></tr>
             <tr><td>答え</td><td><input type="text" name="correct" /></td></tr>
             <tr><td>種類</td><td>
                     <select name="type" id="">
                         <option value="qa" selected>Q&A</option>
-                        <option value="re" selected>Q&A(regular expression)</option>
+                        <option value="re">Q&A(regular expression)</option>
                     </select>
                 </td></tr>
         </table>
