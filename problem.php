@@ -118,7 +118,11 @@ JS;
         <button class="button" id="view-correct">View Answer</button>
         <a class="button" href="problem.php?s=<?php echo $seed; ?>&n=<?php echo $num + 1; ?>">Skip This Problem</a>
     </p>
-
+	
+    <p>
+        <a class="button" href="edit.php?id=<?php echo $p; ?>" target="_blank">Edit this problem</a>
+    </p>
+	
     <p>
         <a class="button" href="index.php">Back to Top</a>
     </p>
