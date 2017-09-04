@@ -82,6 +82,7 @@ JS;
     <style>
         .text-form {
             border: 1px #cccccc solid;
+	    min-height: 1em;
         }
 
         #correct {
