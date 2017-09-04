@@ -120,7 +120,7 @@ JS;
     </p>
 	
     <p>
-        <a class="button" href="edit.php?id=<?php echo $p; ?>" target="_blank">Edit this problem</a>
+        <a class="button" href="edit.php?id=<?php echo $num; ?>" target="_blank">Edit this problem</a>
     </p>
 	
     <p>
