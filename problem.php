@@ -17,10 +17,11 @@ if (!isset($_GET["s"]) || !isset($_GET["n"])) {
 $seed = intval($_GET["s"]);
 $num = intval($_GET["n"]);
 
-$xs = load_problems(PROBLEMS);
-$xs = enabled_problems($xs);
+$problems = load_problems(PROBLEMS);
+$xs = enabled_problems($problems);
 $xs = shuffle_problems($xs, $seed);
 $p = $xs[$num];
+$index = array_search($p, $problems);
 
 function shuffle_problems($xs, $s)
 {
@@ -120,7 +121,7 @@ JS;
     </p>
 	
     <p>
-        <a class="button" href="edit.php?id=<?php echo $num; ?>" target="_blank">Edit this problem</a>
+        <a class="button" href="edit.php?id=<?php echo $index; ?>" target="_blank">Edit this problem</a>
     </p>
 	
     <p>
